@@ -34,35 +34,33 @@ ARG skip_dev_deps
 RUN useradd --create-home redash
 
 # Ubuntu packages
-RUN apt-get update && \
-  apt-get install -y \
-    curl \
-    gnupg \
-    build-essential \
-    pwgen \
-    libffi-dev \
-    sudo \
-    git-core \
-    wget \
-    # Postgres client
-    libpq-dev \
-    # ODBC support:
-    g++ unixodbc-dev \
-    # for SAML
-    xmlsec1 \
-    # Additional packages required for data sources:
-    libssl-dev \
-    default-libmysqlclient-dev \
-    freetds-dev \
-    libsasl2-dev \
-    unzip \
-    libsasl2-modules-gssapi-mit && \
-  # MSSQL ODBC Driver:  
-  curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-  curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
-  apt-get update && \
-  ACCEPT_EULA=Y apt-get install -y msodbcsql17 && \
-  apt-get clean && \
+RUN apt-get update && apt-get install -y curl
+RUN apt-get install -y curl
+RUN apt-get install -y gnupg
+RUN apt-get install -y build-essential
+RUN apt-get install -y pwgen
+RUN apt-get install -y libffi-dev
+RUN apt-get install -y sudo
+RUN apt-get install -y git-core
+RUN apt-get install -y wget
+RUN apt-get install -y # Postgres client
+RUN apt-get install -y libpq-dev
+RUN apt-get install -y # ODBC support:
+RUN apt-get install -y g++ unixodbc-dev
+RUN apt-get install -y # for SAML
+RUN apt-get install -y xmlsec1
+RUN apt-get install -y # Additional packages required for data sources:
+RUN apt-get install -y libssl-dev
+RUN apt-get install -y default-libmysqlclient-dev
+RUN apt-get install -y freetds-dev
+RUN apt-get install -y libsasl2-dev
+RUN apt-get install -y unzip
+RUN apt-get install -y libsasl2-modules-gssapi-microsoft
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - &&
+  curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list &&
+  apt-get update &&
+  ACCEPT_EULA=Y apt-get install -y msodbcsql17 &&
+  apt-get clean &&
   rm -rf /var/lib/apt/lists/*
 
 ARG databricks_odbc_driver_url=https://databricks.com/wp-content/uploads/2.6.10.1010-2/SimbaSparkODBC-2.6.10.1010-2-Debian-64bit.zip
