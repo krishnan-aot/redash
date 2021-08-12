@@ -55,8 +55,8 @@ RUN apt-get install -y freetds-dev
 RUN apt-get install -y libsasl2-dev
 RUN apt-get install -y unzip
 RUN apt-get install -y libsasl2-modules-gssapi-microsoft
-RUN apt-get install -y curl && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - &&
-  curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list &&
+RUN apt-get install -y curl && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN apt-get install -y curl && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list &&
   apt-get update &&
   ACCEPT_EULA=Y apt-get install -y msodbcsql17 &&
   apt-get clean &&
