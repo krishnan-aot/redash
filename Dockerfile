@@ -34,6 +34,7 @@ ARG skip_dev_deps
 RUN useradd --create-home redash
 
 # Ubuntu packages
+FROM ubuntu:18.04
 RUN apt-get update
 RUN apt-get install -y curl
 RUN apt-get install -y gnupg
