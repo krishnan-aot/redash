@@ -34,6 +34,7 @@ ARG skip_dev_deps
 RUN useradd --create-home redash
 
 # Ubuntu packages
+RUN apt-get update
 RUN apt-get install -y curl
 RUN apt-get install -y gnupg
 RUN apt-get install -y build-essential
